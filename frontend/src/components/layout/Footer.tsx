@@ -1,3 +1,4 @@
+
 import { ShieldCheck, Lock, ExternalLink, Sparkles } from 'lucide-react'
 import type { ActiveTab } from '../../types/security'
 
