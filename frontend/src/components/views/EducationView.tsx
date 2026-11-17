@@ -50,57 +50,65 @@ export function EducationView() {
 
   const topics = [
     {
+      num: '01',
       icon: <KeyRound className="w-5 h-5 text-sky-400" />,
-      title: '1. Information Entropy & Combinatorics',
+      title: 'Information Entropy & Combinatorics',
       subtitle: 'The mathematical foundation of password resilience',
       content:
-        'Entropy measures the degree of unpredictability in bits. Theoretical entropy is calculated using Shannon\u2019s formula H = L \u00d7 log\u2082(N), where L is password length and N is the character pool size. While an 8-character numeric pin has only 26.6 bits of entropy (10\u2078 combinations), a 16-character alphanumeric password exceeds 95 bits (over 4.7 \u00d7 10\u00b2\u2078 combinations). Real-world security also depends on pattern avoidance, since human predictability collapses effective entropy.',
+        'Entropy measures the degree of unpredictability in bits. Theoretical entropy is calculated using Shannon’s formula H = L × log₂(N), where L is password length and N is the character pool size. While an 8-character numeric pin has only 26.6 bits of entropy (10⁸ combinations), a 16-character alphanumeric password exceeds 95 bits (over 4.7 × 10²⁸ combinations). Real-world security also depends on pattern avoidance, since human predictability collapses effective entropy.',
     },
     {
+      num: '02',
       icon: <Zap className="w-5 h-5 text-amber-400" />,
-      title: '2. Brute-Force & GPU Acceleration',
+      title: 'Brute-Force & GPU Acceleration',
       subtitle: 'How automated adversarial clusters crack hashes',
       content:
         'Modern GPU cracking rigs utilize massive parallel clusters of graphics cards (e.g. NVIDIA RTX 4090 arrays) capable of computing over 100 billion NTLM or MD5 hashes per second. Attackers do not guess passwords manually; they generate trillions of candidates per minute using specialized software like Hashcat and John the Ripper. Increasing password length from 8 to 16 characters raises the difficulty by factors of trillions.',
     },
     {
+      num: '03',
       icon: <Layers className="w-5 h-5 text-indigo-400" />,
-      title: '3. Dictionary Attacks & Rainbow Tables',
+      title: 'Dictionary Attacks & Rainbow Tables',
       subtitle: 'Exploiting human bias and precomputed lookup matrices',
       content:
         'Dictionary attacks systematically test millions of words, names, slang terms, and leaked passwords (such as the RockYou dataset). Rainbow tables use precomputed cryptographic hash chains to invert fast hash functions in constant time. To defeat rainbow tables, modern security architectures implement unique cryptographic salts for every stored password.',
     },
     {
+      num: '04',
       icon: <Database className="w-5 h-5 text-rose-400" />,
-      title: '4. Credential Stuffing & Botnets',
+      title: 'Credential Stuffing & Botnets',
       subtitle: 'The danger of password reuse across unrelated services',
       content:
         'When a minor website suffers a data breach, cybercriminals extract email and password combos and deploy automated botnets to test those identical credentials against high-value services (banking, email, cloud providers). Credential stuffing succeeds because over 65% of internet users reuse identical or similar passwords across multiple accounts.',
     },
     {
+      num: '05',
       icon: <Cpu className="w-5 h-5 text-emerald-400" />,
-      title: '5. Modern Password Hashing: Argon2 & bcrypt',
+      title: 'Modern Password Hashing: Argon2 & bcrypt',
       subtitle: 'Why MD5 and SHA-256 are unfit for password storage',
       content:
         'General-purpose cryptographic hash functions like SHA-256 and MD5 are designed to be fast, making them dangerous for password verification because attackers can compute billions per second. Modern systems use slow, memory-hard key derivation functions like Argon2id (winner of the Password Hashing Competition) and bcrypt, which consume gigabytes of RAM and heavy CPU cycles per iteration, making GPU/ASIC parallelization economically infeasible.',
     },
     {
+      num: '06',
       icon: <Lock className="w-5 h-5 text-cyan-400" />,
-      title: '6. Cryptographic Salts & Secret Peppers',
+      title: 'Cryptographic Salts & Secret Peppers',
       subtitle: 'Defeating precomputed lookup attacks',
       content:
         'A salt is a cryptographically random byte sequence (typically 128+ bits) generated per-user and concatenated with the plaintext password prior to hashing. Salts guarantee that two users with identical passwords produce completely different hash strings, rendering rainbow tables and bulk lookup tables completely useless. An optional pepper is an application-level secret stored outside the database for defense-in-depth.',
     },
     {
+      num: '07',
       icon: <Smartphone className="w-5 h-5 text-purple-400" />,
-      title: '7. Multi-Factor Authentication & Passkeys',
+      title: 'Multi-Factor Authentication & Passkeys',
       subtitle: 'Replacing shared secrets with asymmetric public key pairs',
       content:
-        'Even the strongest password can be phished or leaked via malware. Multi-Factor Authentication (MFA) requires two independent factors: something you know (password), something you have (hardware token, authenticator app), or something you are (biometrics). Passkeys (FIDO2 / WebAuthn) eliminate passwords entirely, using public-key cryptography where the private key never leaves the device\u2019s Secure Enclave.',
+        'Even the strongest password can be phished or leaked via malware. Multi-Factor Authentication (MFA) requires two independent factors: something you know (password), something you have (hardware token, authenticator app), or something you are (biometrics). Passkeys (FIDO2 / WebAuthn) eliminate passwords entirely, using public-key cryptography where the private key never leaves the device’s Secure Enclave.',
     },
     {
+      num: '08',
       icon: <ShieldCheck className="w-5 h-5 text-blue-400" />,
-      title: '8. Password Managers & Secure Enclaves',
+      title: 'Password Managers & Secure Enclaves',
       subtitle: 'Managing unique, cryptographically random credentials',
       content:
         'Human memory is biologically incapable of remembering 100+ unique, 20-character random passwords. Password managers solve this by encrypting all credentials inside an AES-256-GCM vault unlocked by a single master key or biometric prompt. Zero-knowledge architectures ensure the provider has no ability to decrypt your vault data.',
@@ -119,7 +127,7 @@ export function EducationView() {
             <span className="text-xs text-[var(--text-muted)] font-mono">• Cryptographic Science</span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-bold text-[var(--text-primary)] tracking-tight">
-            Security Fundamentals &amp; Threat Vectors
+            Security Fundamentals & <span className="apple-gradient-text">Threat Vectors</span>
           </h1>
           <p className="text-sm text-[var(--text-secondary)] mt-1">
             Explore the mathematics of entropy, GPU cracking speeds, modern salting, and
@@ -264,34 +272,48 @@ export function EducationView() {
       </div>
 
       {/* Accordion Learning Cards */}
-      <div className="flex flex-col gap-3">
-        <h3 className="text-lg font-bold text-[var(--text-primary)] px-1">Curated Knowledge Modules</h3>
+      <div className="flex flex-col gap-3.5 mb-12 sm:mb-16">
+        <div className="flex items-center justify-between px-1">
+          <h3 className="text-lg font-bold text-[var(--text-primary)]">Curated Knowledge Modules</h3>
+          <span className="text-xs font-mono text-[var(--text-muted)]">8 Interactive Modules</span>
+        </div>
 
         {topics.map((t, idx) => {
           const isExpanded = expandedTopic === idx
           return (
             <div
               key={idx}
-              className="liquid-glass rounded-3xl border border-[var(--glass-border)] overflow-hidden transition-colors"
+              className={`rounded-2xl sm:rounded-3xl border transition-all duration-200 overflow-hidden ${
+                isExpanded
+                  ? 'bg-[var(--surface-card)] border-sky-500/35 shadow-[0_8px_30px_rgba(0,0,0,0.12)]'
+                  : 'bg-[var(--surface-base)] border-[var(--glass-border)] hover:border-sky-500/20 hover:bg-[var(--surface-hover)]'
+              }`}
             >
               <button
                 type="button"
                 onClick={() => setExpandedTopic(isExpanded ? null : idx)}
-                className="w-full p-5 sm:p-6 flex items-center justify-between gap-4 text-left cursor-pointer outline-none hover:bg-[var(--surface-hover)]"
+                className="w-full p-4 sm:p-5 flex items-center justify-between gap-4 text-left cursor-pointer outline-none group"
               >
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-[var(--surface-hover)] border border-[var(--glass-border)] flex items-center justify-center shrink-0">
+                <div className="flex items-center gap-3.5 sm:gap-4 min-w-0">
+                  <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-black/[0.03] dark:bg-white/[0.05] border border-[var(--glass-border)] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
                     {t.icon}
                   </div>
-                  <div>
-                    <h4 className="text-base font-semibold text-[var(--text-primary)]">{t.title}</h4>
-                    <p className="text-xs text-[var(--text-muted)]">{t.subtitle}</p>
+                  <div className="min-w-0">
+                    <div className="flex items-center gap-2 mb-0.5">
+                      <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-semibold bg-sky-500/10 text-sky-600 dark:text-sky-400 border border-sky-500/20">
+                        {t.num}
+                      </span>
+                      <h4 className="text-sm sm:text-base font-semibold text-[var(--text-primary)] truncate">
+                        {t.title}
+                      </h4>
+                    </div>
+                    <p className="text-xs text-[var(--text-muted)] line-clamp-1">{t.subtitle}</p>
                   </div>
                 </div>
 
                 <div
-                  className={`w-8 h-8 rounded-xl bg-[var(--surface-hover)] flex items-center justify-center text-[var(--text-secondary)] transition-transform duration-200 ${
-                    isExpanded ? 'rotate-180 text-[var(--text-primary)]' : ''
+                  className={`w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-black/[0.03] dark:bg-white/[0.05] border border-[var(--glass-border)] flex items-center justify-center text-[var(--text-secondary)] shrink-0 transition-transform duration-200 ${
+                    isExpanded ? 'rotate-180 text-[var(--text-primary)] bg-sky-500/10 border-sky-500/30' : ''
                   }`}
                 >
                   <ChevronDown className="w-4 h-4" />
@@ -307,8 +329,8 @@ export function EducationView() {
                     transition={{ duration: 0.25 }}
                     className="overflow-hidden"
                   >
-                    <div className="px-6 pb-6 pt-2 text-sm text-[var(--text-secondary)] leading-relaxed border-t border-[var(--glass-border)]">
-                      <p>{t.content}</p>
+                    <div className="px-6 sm:px-10 pb-7 pt-4 text-sm text-[var(--text-secondary)] leading-relaxed border-t border-[var(--glass-border)] bg-black/[0.015] dark:bg-white/[0.02]">
+                      <p className="max-w-4xl text-left sm:text-[14.5px]">{t.content}</p>
                     </div>
                   </motion.div>
                 )}

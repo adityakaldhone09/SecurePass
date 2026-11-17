@@ -274,7 +274,7 @@ export default function App() {
   }
 
   return (
-    <div className="relative min-h-screen flex flex-col justify-between selection:bg-sky-500/30 selection:text-white">
+    <div className="page-layout relative min-h-screen selection:bg-sky-500/30 selection:text-white">
       {/* Liquid Glass Background Orbs & Grids */}
       <GlassBackground />
 
@@ -291,7 +291,7 @@ export default function App() {
       />
 
       {/* Main View Router */}
-      <main className="flex-1 w-full app-container pt-8 sm:pt-10 pb-16">
+      <main className="page-content flex-1 w-full app-container pt-8 sm:pt-10 pb-16">
         <AnimatePresence mode="wait">
           {activeTab === 'landing' && (
             <motion.div key="landing" variants={fadeInScale} initial="initial" animate="animate" exit="exit">

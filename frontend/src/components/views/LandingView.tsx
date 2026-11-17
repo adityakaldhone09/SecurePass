@@ -101,23 +101,23 @@ export function LandingView({ onNavigate, onQuickAnalyze }: LandingViewProps) {
           HERO SECTION: Balanced Two-Column Apple Composition
           ========================================================================= */}
       <section className="relative w-full pt-4 sm:pt-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center w-full min-w-0">
           {/* LEFT COLUMN: Hero Messaging & CTAs (7 cols) */}
           <motion.div
             variants={heroHeaderVariants}
             initial="initial"
             animate="animate"
-            className="lg:col-span-7 flex flex-col items-start text-left gap-6"
+            className="lg:col-span-7 flex flex-col items-start text-left gap-6 w-full min-w-0"
           >
-            <Badge variant="blue" pulse className="px-3 py-1">
-              <span className="font-semibold tracking-wider uppercase text-[10px]">
-                Liquid Glass Architecture • Enterprise Cyber Defense
+            <Badge variant="blue" pulse className="px-3 py-1 max-w-full">
+              <span className="font-semibold tracking-wider uppercase text-[10px] truncate">
+                <span className="hidden sm:inline">Liquid Glass Architecture • </span>Enterprise Cyber Defense
               </span>
             </Badge>
 
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-[var(--text-primary)] leading-[1.1]">
               Intelligent Password Security.{' '}
-              <span className="bg-gradient-to-r from-sky-500 via-blue-600 to-indigo-500 bg-clip-text text-transparent">
+              <span className="apple-gradient-text">
                 Engineered with Precision.
               </span>
             </h1>
@@ -171,7 +171,7 @@ export function LandingView({ onNavigate, onQuickAnalyze }: LandingViewProps) {
             initial={{ opacity: 0, scale: 0.96, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ ...smoothSpring, delay: 0.15 }}
-            className="lg:col-span-5 w-full"
+            className="lg:col-span-5 w-full min-w-0"
           >
             <div className="w-full p-5 sm:p-7 rounded-3xl liquid-glass border border-[var(--glass-border)] shadow-[0_24px_60px_rgba(0,0,0,0.18)] relative overflow-hidden text-left">
               {/* Terminal Window Header */}
@@ -375,13 +375,13 @@ export function LandingView({ onNavigate, onQuickAnalyze }: LandingViewProps) {
           SECTION 4: Security Academy Callout Banner
           ========================================================================= */}
       <section className="w-full">
-        <div className="p-8 sm:p-12 rounded-3xl liquid-glass border border-sky-500/25 flex flex-col md:flex-row items-center justify-between gap-8 text-left">
-          <div className="flex flex-col gap-3 max-w-2xl">
-            <Badge variant="amber" size="sm">
+        <div className="p-8 sm:p-12 rounded-3xl liquid-glass border border-sky-500/25 flex flex-col md:flex-row items-start md:items-center justify-between gap-8 text-left">
+          <div className="flex flex-col items-start gap-3 max-w-2xl">
+            <Badge variant="blue" size="sm">
               Cybersecurity Academy
             </Badge>
             <h3 className="text-2xl sm:text-3xl font-bold text-[var(--text-primary)] tracking-tight">
-              Master Password Entropy, Hash Cracking & MFA
+              <span className="apple-gradient-text">Master</span> Password Entropy, Hash Cracking &amp; MFA
             </h3>
             <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
               Understand the mathematics of combinatorics, GPU brute-force speed tables, Argon2

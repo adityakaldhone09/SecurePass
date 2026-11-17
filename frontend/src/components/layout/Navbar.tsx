@@ -51,17 +51,17 @@ export function Navbar({
 
   return (
     <>
-      <header className="sticky top-3 sm:top-4 z-50 w-full app-container">
-        <nav className="liquid-glass-nav rounded-2xl sm:rounded-3xl px-3 sm:px-5 py-2.5 flex items-center justify-between border border-[var(--glass-border)] shadow-[0_16px_40px_rgba(0,0,0,0.12)]">
+      <header className="sticky top-3 sm:top-5 z-50 w-full app-container">
+        <nav className="liquid-glass-nav rounded-2xl sm:rounded-full px-4 sm:px-6 h-16 flex items-center justify-between border border-[var(--glass-border)] shadow-[0_16px_40px_rgba(0,0,0,0.12)]">
           {/* Brand */}
           <button
             type="button"
             onClick={() => handleSelectTab('landing')}
             className="flex items-center gap-3 cursor-pointer group text-left outline-none shrink-0"
           >
-            <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-gradient-to-tr from-sky-400 via-blue-600 to-indigo-600 p-[1px] shadow-[0_0_18px_rgba(56,189,248,0.35)] transition-transform duration-300 group-hover:scale-105 shrink-0">
-              <div className="w-full h-full rounded-[15px] bg-slate-950/85 backdrop-blur-md flex items-center justify-center text-sky-400">
-                <ShieldCheck className="w-5 h-5 drop-shadow-[0_0_8px_rgba(56,189,248,0.8)]" />
+            <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-tr from-sky-400 via-blue-600 to-indigo-600 p-[1.5px] shadow-[0_0_18px_rgba(56,189,248,0.35)] transition-transform duration-300 group-hover:scale-105 shrink-0">
+              <div className="w-full h-full rounded-full bg-slate-950/85 backdrop-blur-md flex items-center justify-center text-sky-400">
+                <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 drop-shadow-[0_0_8px_rgba(56,189,248,0.8)]" />
               </div>
             </div>
             <div>
@@ -71,12 +71,12 @@ export function Navbar({
                   PRO
                 </span>
               </div>
-              <p className="text-[11px] text-[var(--text-muted)] hidden sm:block">Intelligent Cyber Defense</p>
+              <p className="text-[11px] text-[var(--text-muted)] hidden xl:block">Intelligent Cyber Defense</p>
             </div>
           </button>
 
-          {/* Desktop Navigation Links */}
-          <div className="hidden lg:flex items-center gap-0.5 xl:gap-1 bg-slate-100/80 dark:bg-black/35 p-1 rounded-2xl border border-[var(--glass-border)]">
+          {/* Desktop Navigation Links - Apple Segmented Capsule */}
+          <div className="hidden lg:flex items-center gap-1 bg-black/[0.04] dark:bg-white/[0.06] backdrop-blur-md p-1.5 rounded-full border border-[var(--glass-border)] shadow-xs">
             {navItems.map((item) => {
               const isActive = activeTab === item.id
               return (
@@ -85,19 +85,21 @@ export function Navbar({
                   type="button"
                   onClick={() => handleSelectTab(item.id)}
                   className={cn(
-                    'relative px-2.5 xl:px-3 py-1.5 rounded-xl text-xs font-medium transition-all duration-200 cursor-pointer flex items-center gap-1.5 outline-none select-none',
-                    isActive ? 'text-[var(--text-primary)] font-semibold' : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]',
+                    'relative px-3 xl:px-3.5 py-1.5 rounded-full text-xs xl:text-[13px] font-medium transition-all duration-200 cursor-pointer flex items-center gap-1.5 outline-none select-none',
+                    isActive
+                      ? 'text-[var(--text-primary)] font-semibold'
+                      : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-black/[0.02] dark:hover:bg-white/[0.03]',
                   )}
                 >
                   {isActive && (
                     <motion.div
                       layoutId="navTabActive"
-                      transition={{ type: 'spring', stiffness: 450, damping: 32 }}
-                      className="absolute inset-0 bg-white dark:bg-white/[0.14] border border-slate-200/90 dark:border-white/20 rounded-xl shadow-xs"
+                      transition={{ type: 'spring', stiffness: 500, damping: 35 }}
+                      className="absolute inset-0 bg-white dark:bg-white/[0.16] rounded-full shadow-[0_2px_8px_rgba(0,0,0,0.08)] dark:shadow-[0_2px_10px_rgba(0,0,0,0.3)] border border-black/[0.04] dark:border-white/15"
                     />
                   )}
                   <span className="relative z-10 flex items-center gap-1.5">
-                    <span className="hidden xl:inline">{item.icon}</span>
+                    <span className="shrink-0">{item.icon}</span>
                     <span>{item.label}</span>
                   </span>
                 </button>
@@ -110,7 +112,7 @@ export function Navbar({
             {/* Live Backend Connection Indicator */}
             <div
               className={cn(
-                'hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-mono backdrop-blur-md border',
+                'hidden md:flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono backdrop-blur-md border',
                 isBackendConnected
                   ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/25'
                   : 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/25',
@@ -133,7 +135,7 @@ export function Navbar({
             <motion.button
               whileTap={{ scale: 0.9, rotate: 15 }}
               onClick={onThemeToggle}
-              className="w-10 h-10 rounded-2xl liquid-glass flex items-center justify-center text-[var(--text-secondary)] hover:text-[var(--text-primary)] cursor-pointer border border-[var(--glass-border)] shadow-sm transition-colors outline-none"
+              className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black/[0.03] dark:bg-white/[0.06] hover:bg-black/[0.06] dark:hover:bg-white/[0.12] flex items-center justify-center text-[var(--text-secondary)] hover:text-[var(--text-primary)] cursor-pointer border border-[var(--glass-border)] shadow-xs transition-colors outline-none shrink-0"
               aria-label="Toggle visual theme"
             >
               {theme === 'dark' ? (
@@ -147,10 +149,10 @@ export function Navbar({
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden w-10 h-10 rounded-2xl liquid-glass flex items-center justify-center text-[var(--text-secondary)] hover:text-[var(--text-primary)] cursor-pointer border border-[var(--glass-border)] outline-none"
+              className="lg:hidden w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black/[0.03] dark:bg-white/[0.06] hover:bg-black/[0.06] dark:hover:bg-white/[0.12] flex items-center justify-center text-[var(--text-secondary)] hover:text-[var(--text-primary)] cursor-pointer border border-[var(--glass-border)] outline-none shrink-0"
               aria-label="Toggle navigation menu"
             >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {mobileMenuOpen ? <X className="w-4 h-4 sm:w-5 sm:h-5" /> : <Menu className="w-4 h-4 sm:w-5 sm:h-5" />}
             </button>
           </div>
         </nav>
@@ -163,7 +165,7 @@ export function Navbar({
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            transition={{ type: 'spring', stiffness: 350, damping: 28 }}
+            transition={{ type: 'spring', stiffness: 350, damping: 35 }}
             className="fixed inset-x-4 top-24 z-40 lg:hidden liquid-glass-nav rounded-3xl p-4 border border-[var(--glass-border)] shadow-2xl backdrop-blur-2xl"
           >
             <div className="flex flex-col gap-1.5">
