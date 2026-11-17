@@ -51,22 +51,22 @@ export function Navbar({
 
   return (
     <>
-      <header className="sticky top-4 z-50 w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-        <nav className="liquid-glass-nav rounded-3xl px-4 py-2 flex items-center justify-between border border-[var(--glass-border)] shadow-[0_20px_50px_rgba(0,0,0,0.15)]">
+      <header className="sticky top-3 sm:top-4 z-50 w-full app-container">
+        <nav className="liquid-glass-nav rounded-2xl sm:rounded-3xl px-3 sm:px-5 py-2.5 flex items-center justify-between border border-[var(--glass-border)] shadow-[0_16px_40px_rgba(0,0,0,0.12)]">
           {/* Brand */}
           <button
             type="button"
             onClick={() => handleSelectTab('landing')}
             className="flex items-center gap-3 cursor-pointer group text-left outline-none shrink-0"
           >
-            <div className="relative w-10 h-10 rounded-2xl bg-gradient-to-tr from-sky-400 via-blue-600 to-indigo-600 p-[1px] shadow-[0_0_20px_rgba(56,189,248,0.35)] transition-transform duration-300 group-hover:scale-105 shrink-0">
+            <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-gradient-to-tr from-sky-400 via-blue-600 to-indigo-600 p-[1px] shadow-[0_0_18px_rgba(56,189,248,0.35)] transition-transform duration-300 group-hover:scale-105 shrink-0">
               <div className="w-full h-full rounded-[15px] bg-slate-950/85 backdrop-blur-md flex items-center justify-center text-sky-400">
                 <ShieldCheck className="w-5 h-5 drop-shadow-[0_0_8px_rgba(56,189,248,0.8)]" />
               </div>
             </div>
             <div>
-              <div className="flex items-center gap-2">
-                <span className="font-bold tracking-tight text-base text-[var(--text-primary)]">SecurePass</span>
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <span className="font-bold tracking-tight text-sm sm:text-base text-[var(--text-primary)]">SecurePass</span>
                 <span className="text-[10px] px-1.5 py-0.2 rounded-full font-mono bg-sky-500/15 text-sky-600 dark:text-sky-400 border border-sky-500/30 font-semibold">
                   PRO
                 </span>
@@ -76,7 +76,7 @@ export function Navbar({
           </button>
 
           {/* Desktop Navigation Links */}
-          <div className="hidden lg:flex items-center gap-0.5 xl:gap-1 bg-slate-900/[0.04] dark:bg-black/30 p-1 rounded-2xl border border-[var(--glass-border)]">
+          <div className="hidden lg:flex items-center gap-0.5 xl:gap-1 bg-slate-100/80 dark:bg-black/35 p-1 rounded-2xl border border-[var(--glass-border)]">
             {navItems.map((item) => {
               const isActive = activeTab === item.id
               return (
@@ -85,15 +85,15 @@ export function Navbar({
                   type="button"
                   onClick={() => handleSelectTab(item.id)}
                   className={cn(
-                    'relative px-2.5 xl:px-3.5 py-1.5 rounded-xl text-xs font-medium transition-all duration-200 cursor-pointer flex items-center gap-1.5 outline-none select-none',
+                    'relative px-2.5 xl:px-3 py-1.5 rounded-xl text-xs font-medium transition-all duration-200 cursor-pointer flex items-center gap-1.5 outline-none select-none',
                     isActive ? 'text-[var(--text-primary)] font-semibold' : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]',
                   )}
                 >
                   {isActive && (
                     <motion.div
                       layoutId="navTabActive"
-                      transition={{ type: 'spring', stiffness: 420, damping: 30 }}
-                      className="absolute inset-0 bg-slate-900/[0.08] dark:bg-white/[0.14] backdrop-blur-xl border border-slate-900/10 dark:border-white/20 rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.08),var(--glass-highlight-subtle)]"
+                      transition={{ type: 'spring', stiffness: 450, damping: 32 }}
+                      className="absolute inset-0 bg-white dark:bg-white/[0.14] border border-slate-200/90 dark:border-white/20 rounded-xl shadow-xs"
                     />
                   )}
                   <span className="relative z-10 flex items-center gap-1.5">

@@ -105,7 +105,7 @@ export function BreachCheckView({ initialPassword = 'password123' }: BreachCheck
   }, [handleScan])
 
   return (
-    <div className="flex flex-col gap-10 py-6 max-w-[1400px] mx-auto w-full text-left">
+    <div className="flex flex-col gap-10 py-4 sm:py-6 w-full text-left">
       {/* Header Banner */}
       <div className="liquid-glass rounded-3xl p-6 sm:p-9 border border-[var(--glass-border)] flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div>
@@ -145,14 +145,14 @@ export function BreachCheckView({ initialPassword = 'password123' }: BreachCheck
           Evaluate Password Exposure
         </label>
 
-        <div className="flex flex-col sm:flex-row gap-3">
+        <div className="flex flex-col sm:flex-row gap-3 items-stretch">
           <div className="relative flex-1 flex items-center">
             <input
               type={showPassword ? 'text' : 'password'}
               value={testPassword}
               onChange={(e) => setTestPassword(e.target.value)}
               placeholder="Enter password to scan against breach logs..."
-              className="w-full pl-4 pr-12 py-4 rounded-2xl app-input font-mono text-base outline-none"
+              className="w-full h-12 pl-4 pr-12 rounded-xl app-input font-mono text-base outline-none"
             />
             <button
               type="button"
@@ -165,11 +165,11 @@ export function BreachCheckView({ initialPassword = 'password123' }: BreachCheck
 
           <Button
             variant="primary"
-            size="lg"
+            size="md"
             onClick={handleScan}
             isLoading={isScanning}
             leftIcon={<Search className="w-4 h-4" />}
-            className="sm:w-auto"
+            className="h-12 px-6 w-full sm:w-auto"
           >
             Scan Breach Intel
           </Button>

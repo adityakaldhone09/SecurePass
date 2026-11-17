@@ -113,7 +113,7 @@ export function ReportsView({ currentAnalysis, breachData, auditHistory }: Repor
   ]
 
   return (
-    <div className="flex flex-col gap-8 py-6 max-w-[1100px] mx-auto w-full">
+    <div className="report-document-shell flex flex-col gap-8 py-4 sm:py-6 w-full">
       {/* Top Action Toolbar (Hidden during print) */}
       <div className="liquid-glass rounded-3xl p-6 sm:p-8 border border-[var(--glass-border)] flex flex-col md:flex-row md:items-center justify-between gap-6 no-print text-left">
         <div>
@@ -131,12 +131,13 @@ export function ReportsView({ currentAnalysis, breachData, auditHistory }: Repor
           </p>
         </div>
 
-        <div className="flex items-center gap-3 shrink-0">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto shrink-0">
           <Button
-            variant="glass"
+            variant="secondary"
             size="md"
             onClick={handleDownloadJSON}
             leftIcon={downloaded ? <Check className="w-4 h-4 text-emerald-500 dark:text-emerald-400" /> : <Download className="w-4 h-4" />}
+            className="w-full sm:w-auto"
           >
             {downloaded ? 'Exported JSON' : 'Export JSON'}
           </Button>
@@ -146,6 +147,7 @@ export function ReportsView({ currentAnalysis, breachData, auditHistory }: Repor
             size="md"
             onClick={handlePrint}
             leftIcon={<Printer className="w-4 h-4" />}
+            className="w-full sm:w-auto"
           >
             Print / Save as PDF
           </Button>

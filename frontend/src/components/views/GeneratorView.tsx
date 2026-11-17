@@ -141,7 +141,7 @@ export function GeneratorView({ onAnalyzeGenerated }: GeneratorViewProps) {
   const theoreticalBits = poolSize > 0 ? (config.length * Math.log2(poolSize)).toFixed(1) : '0'
 
   return (
-    <div className="flex flex-col gap-10 py-6 max-w-[1400px] mx-auto w-full relative text-left">
+    <div className="flex flex-col gap-10 py-4 sm:py-6 w-full relative text-left">
       <SparkleConfetti show={showConfetti} />
 
       {/* Header Banner */}
@@ -164,30 +164,30 @@ export function GeneratorView({ onAnalyzeGenerated }: GeneratorViewProps) {
 
         {/* Presets */}
         <div className="flex flex-wrap items-center gap-2">
-          <span className="text-xs text-[var(--text-muted)] mr-1 flex items-center gap-1">
+          <span className="text-xs text-[var(--text-muted)] mr-1 flex items-center gap-1 font-medium">
             <Sliders className="w-3.5 h-3.5" /> Presets:
           </span>
-          <button
-            type="button"
+          <Button
+            variant="secondary"
+            size="sm"
             onClick={() => applyPreset('maximum')}
-            className="text-xs px-3 py-1.5 rounded-xl bg-slate-900/[0.04] dark:bg-white/5 hover:bg-slate-900/[0.08] dark:hover:bg-white/10 text-sky-600 dark:text-sky-300 border border-sky-400/25 transition-colors cursor-pointer"
           >
             Maximum (24 chars)
-          </button>
-          <button
-            type="button"
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
             onClick={() => applyPreset('balanced')}
-            className="text-xs px-3 py-1.5 rounded-xl bg-slate-900/[0.04] dark:bg-white/5 hover:bg-slate-900/[0.08] dark:hover:bg-white/10 text-[var(--text-secondary)] hover:text-[var(--text-primary)] border border-[var(--glass-border)] transition-colors cursor-pointer"
           >
             Standard (16 chars)
-          </button>
-          <button
-            type="button"
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
             onClick={() => applyPreset('pin')}
-            className="text-xs px-3 py-1.5 rounded-xl bg-slate-900/[0.04] dark:bg-white/5 hover:bg-slate-900/[0.08] dark:hover:bg-white/10 text-amber-600 dark:text-amber-300 border border-amber-400/25 transition-colors cursor-pointer"
           >
             Numeric PIN (8 digits)
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -313,31 +313,31 @@ export function GeneratorView({ onAnalyzeGenerated }: GeneratorViewProps) {
                   </div>
 
                   <div className="flex items-center gap-2 shrink-0">
-                    <button
-                      type="button"
+                    <Button
+                      variant="outline"
+                      size="sm"
                       onClick={() => onAnalyzeGenerated(pwd)}
-                      className="px-3 py-1.5 rounded-xl bg-black/[0.03] dark:bg-white/5 hover:bg-black/[0.06] dark:hover:bg-white/10 text-xs font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] border border-[var(--glass-border)] transition-colors cursor-pointer hidden sm:block"
+                      className="hidden sm:inline-flex"
                     >
                       Audit
-                    </button>
+                    </Button>
 
-                    <button
-                      type="button"
+                    <Button
+                      variant="secondary"
+                      size="sm"
                       onClick={() => handleCopy(pwd, idx)}
-                      className="p-2 sm:px-3 sm:py-1.5 rounded-xl bg-sky-500/10 hover:bg-sky-500/20 text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 border border-sky-500/20 flex items-center gap-1.5 text-xs font-medium transition-all cursor-pointer"
+                      leftIcon={
+                        copiedIndex === idx ? (
+                          <Check className="w-3.5 h-3.5 text-emerald-500 dark:text-emerald-400" />
+                        ) : (
+                          <Copy className="w-3.5 h-3.5" />
+                        )
+                      }
                     >
-                      {copiedIndex === idx ? (
-                        <>
-                          <Check className="w-4 h-4 text-emerald-500 dark:text-emerald-400" />
-                          <span className="hidden sm:inline text-emerald-600 dark:text-emerald-400 font-semibold">Copied</span>
-                        </>
-                      ) : (
-                        <>
-                          <Copy className="w-4 h-4" />
-                          <span className="hidden sm:inline">Copy</span>
-                        </>
-                      )}
-                    </button>
+                      <span className="hidden sm:inline">
+                        {copiedIndex === idx ? 'Copied' : 'Copy'}
+                      </span>
+                    </Button>
                   </div>
                 </motion.div>
               ))}

@@ -13,8 +13,8 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
     const glassStyles = {
       base: 'liquid-glass',
       hover: 'liquid-glass-card',
-      subtle: 'bg-white/[0.03] dark:bg-slate-900/40 backdrop-blur-md border border-white/10 dark:border-white/5 rounded-2xl',
-      solid: 'bg-slate-900/90 border border-slate-800 rounded-2xl shadow-xl',
+      subtle: 'bg-black/[0.02] dark:bg-white/[0.03] backdrop-blur-md border border-[var(--glass-border)] rounded-2xl',
+      solid: 'bg-[var(--surface-solid)] border border-[var(--glass-border)] rounded-2xl shadow-xl',
     }
 
     const glowStyles = {

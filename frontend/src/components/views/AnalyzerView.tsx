@@ -16,6 +16,7 @@ import {
   XCircle,
 } from 'lucide-react'
 import { Badge } from '../ui/Badge'
+import { Button } from '../ui/Button'
 import { ScoreRing } from '../ui/ScoreRing'
 import { EntropyMeter } from '../ui/EntropyMeter'
 import { SparkleConfetti } from '../ui/SparkleConfetti'
@@ -95,7 +96,7 @@ export function AnalyzerView({
   ]
 
   return (
-    <div className="flex flex-col gap-10 py-6 max-w-[1400px] mx-auto w-full relative">
+    <div className="flex flex-col gap-10 py-4 sm:py-6 w-full relative">
       <SparkleConfetti show={showSparkles || analysis.strength_score >= 90} />
 
       {/* Hero Input Header */}
@@ -140,18 +141,18 @@ export function AnalyzerView({
 
           {/* Preset Buttons */}
           <div className="flex flex-wrap items-center gap-2">
-            <span className="text-xs text-[var(--text-muted)] mr-1 flex items-center gap-1">
+            <span className="text-xs text-[var(--text-muted)] mr-1 flex items-center gap-1 font-medium">
               <Sliders className="w-3.5 h-3.5" /> Sample Presets:
             </span>
             {presets.map((preset, idx) => (
-              <button
+              <Button
                 key={idx}
-                type="button"
+                variant="outline"
+                size="sm"
                 onClick={() => onPasswordChange(preset.value)}
-                className="text-xs px-2.5 py-1 rounded-xl bg-slate-900/[0.04] dark:bg-white/5 hover:bg-slate-900/[0.08] dark:hover:bg-white/10 text-[var(--text-secondary)] hover:text-[var(--text-primary)] border border-[var(--glass-border)] transition-colors cursor-pointer"
               >
                 {preset.label}
-              </button>
+              </Button>
             ))}
           </div>
         </div>

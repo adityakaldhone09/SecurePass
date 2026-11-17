@@ -53,8 +53,43 @@ const DEFAULT_ANALYSIS: AnalysisResult = {
 }
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<ActiveTab>('landing')
-  const [theme, setTheme] = useState<'dark' | 'light'>('dark')
+  const [activeTab, setActiveTab] = useState<ActiveTab>(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search)
+      const tab = params.get('tab') as ActiveTab
+      const validTabs: ActiveTab[] = [
+        'landing',
+        'dashboard',
+        'analyzer',
+        'generator',
+        'breach',
+        'education',
+        'reports',
+      ]
+      if (tab && validTabs.includes(tab)) return tab
+    }
+    return 'landing'
+  })
+
+  const [theme, setTheme] = useState<'dark' | 'light'>(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search)
+      const t = params.get('theme')
+      if (t === 'light' || t === 'dark') {
+        const root = document.documentElement
+        root.dataset.theme = t
+        if (t === 'dark') {
+          root.classList.add('dark')
+          root.classList.remove('light')
+        } else {
+          root.classList.add('light')
+          root.classList.remove('dark')
+        }
+        return t
+      }
+    }
+    return 'dark'
+  })
   const [password, setPassword] = useState('Tr0ub4dor&3#99')
   const [analysis, setAnalysis] = useState<AnalysisResult>(DEFAULT_ANALYSIS)
   const [breachData, setBreachData] = useState<BreachResult | null>({
@@ -90,6 +125,13 @@ export default function App() {
   useEffect(() => {
     const root = document.documentElement
     root.dataset.theme = theme
+    if (theme === 'dark') {
+      root.classList.add('dark')
+      root.classList.remove('light')
+    } else {
+      root.classList.add('light')
+      root.classList.remove('dark')
+    }
   }, [theme])
 
   // Periodic Backend Health Check
@@ -249,7 +291,7 @@ export default function App() {
       />
 
       {/* Main View Router */}
-      <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 pt-6 pb-12">
+      <main className="flex-1 w-full app-container pt-8 sm:pt-10 pb-16">
         <AnimatePresence mode="wait">
           {activeTab === 'landing' && (
             <motion.div key="landing" variants={fadeInScale} initial="initial" animate="animate" exit="exit">

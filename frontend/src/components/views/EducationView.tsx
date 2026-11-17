@@ -108,7 +108,7 @@ export function EducationView() {
   ]
 
   return (
-    <div className="flex flex-col gap-8 py-6 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    <div className="flex flex-col gap-8 py-4 sm:py-6 w-full text-left">
       {/* Header Banner */}
       <div className="liquid-glass rounded-3xl p-6 sm:p-8 border border-[var(--glass-border)] flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div>

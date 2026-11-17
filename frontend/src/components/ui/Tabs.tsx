@@ -46,14 +46,14 @@ export function Tabs({ items, activeId, onChange, className, size = 'md' }: Tabs
             className={cn(
               'relative z-10 inline-flex items-center gap-2 font-medium transition-colors duration-200 cursor-pointer whitespace-nowrap outline-none',
               itemSizeStyles[size],
-              isActive ? 'text-white' : 'text-slate-400 hover:text-slate-200',
+              isActive ? 'text-[var(--text-primary)] font-semibold' : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]',
             )}
           >
             {isActive && (
               <motion.div
                 layoutId="activeTabIndicator"
                 transition={{ type: 'spring', stiffness: 450, damping: 32 }}
-                className="absolute inset-0 bg-gradient-to-b from-white/20 to-white/5 dark:from-white/15 dark:to-white/[0.04] backdrop-blur-xl border border-white/20 rounded-xl shadow-[0_4px_16px_rgba(0,0,0,0.15),inset_0_1px_0_0_rgba(255,255,255,0.25)]"
+                className="absolute inset-0 bg-white dark:bg-white/[0.14] border border-slate-200/90 dark:border-white/20 rounded-xl shadow-xs"
               />
             )}
             <span className="relative z-10 flex items-center gap-1.5">

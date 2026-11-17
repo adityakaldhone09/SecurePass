@@ -96,7 +96,7 @@ export function LandingView({ onNavigate, onQuickAnalyze }: LandingViewProps) {
   ]
 
   return (
-    <div className="flex flex-col gap-20 sm:gap-28 py-6 w-full max-w-[1400px] mx-auto">
+    <div className="flex flex-col gap-20 sm:gap-28 py-4 sm:py-6 w-full">
       {/* =========================================================================
           HERO SECTION: Balanced Two-Column Apple Composition
           ========================================================================= */}
@@ -115,33 +115,35 @@ export function LandingView({ onNavigate, onQuickAnalyze }: LandingViewProps) {
               </span>
             </Badge>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[var(--text-primary)] leading-[1.08]">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-[var(--text-primary)] leading-[1.1]">
               Intelligent Password Security.{' '}
               <span className="bg-gradient-to-r from-sky-500 via-blue-600 to-indigo-500 bg-clip-text text-transparent">
                 Engineered with Precision.
               </span>
             </h1>
 
-            <p className="text-base sm:text-lg text-[var(--text-secondary)] max-w-xl font-normal leading-relaxed">
+            <p className="text-sm sm:text-base md:text-lg text-[var(--text-secondary)] max-w-xl font-normal leading-relaxed">
               Evaluate cryptographic resilience, detect breach exposure via k-anonymity, and generate
               impenetrable credentials wrapped in Apple-inspired elegance.
             </p>
 
-            {/* Action CTAs with Generous Margins */}
-            <div className="flex flex-wrap items-center gap-4 pt-2 pb-2">
+            {/* Action CTAs with Generous Margins & Mobile Stacking */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 w-full sm:w-auto pt-2 pb-2">
               <Button
                 variant="primary"
                 size="lg"
                 onClick={handleStartAnalyze}
                 rightIcon={<ArrowRight className="w-4 h-4" />}
+                className="w-full sm:w-auto"
               >
                 Analyze Password
               </Button>
               <Button
-                variant="glass"
+                variant="secondary"
                 size="lg"
                 onClick={() => onNavigate('generator')}
                 leftIcon={<Sparkles className="w-4 h-4 text-sky-500 dark:text-sky-400" />}
+                className="w-full sm:w-auto"
               >
                 Generate Credentials
               </Button>
@@ -171,7 +173,7 @@ export function LandingView({ onNavigate, onQuickAnalyze }: LandingViewProps) {
             transition={{ ...smoothSpring, delay: 0.15 }}
             className="lg:col-span-5 w-full"
           >
-            <div className="w-full p-6 sm:p-7 rounded-3xl liquid-glass border border-[var(--glass-border)] shadow-[0_24px_60px_rgba(0,0,0,0.18)] relative overflow-hidden text-left">
+            <div className="w-full p-5 sm:p-7 rounded-3xl liquid-glass border border-[var(--glass-border)] shadow-[0_24px_60px_rgba(0,0,0,0.18)] relative overflow-hidden text-left">
               {/* Terminal Window Header */}
               <div className="flex items-center justify-between pb-4 border-b border-[var(--glass-border)]">
                 <div className="flex items-center gap-2">
@@ -235,7 +237,7 @@ export function LandingView({ onNavigate, onQuickAnalyze }: LandingViewProps) {
                 </div>
 
                 {/* Metrics Breakdown Grid */}
-                <div className="grid grid-cols-2 gap-3 mt-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2">
                   <div className="p-3.5 rounded-2xl bg-black/[0.02] dark:bg-white/[0.03] border border-[var(--glass-border)] flex items-center gap-3">
                     <div className="w-8 h-8 rounded-xl bg-sky-500/15 text-sky-600 dark:text-sky-400 flex items-center justify-center shrink-0">
                       <KeyRound className="w-4 h-4" />

@@ -102,9 +102,9 @@ export function DashboardView({
   }, [currentAnalysis])
 
   return (
-    <div className="flex flex-col gap-10 py-6 max-w-[1400px] mx-auto w-full">
+    <div className="flex flex-col gap-10 py-4 sm:py-6 w-full">
       {/* SECTION 1: Overview Header */}
-      <div className="liquid-glass rounded-3xl p-6 sm:p-9 border border-[var(--glass-border)] flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <div className="liquid-glass rounded-3xl p-5 sm:p-9 border border-[var(--glass-border)] flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
         <div className="flex flex-col gap-2 max-w-2xl text-left">
           <div className="flex items-center gap-2">
             <Badge variant="blue" size="sm">
@@ -120,12 +120,13 @@ export function DashboardView({
           </p>
         </div>
 
-        <div className="flex items-center gap-3 shrink-0">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto shrink-0">
           <Button
-            variant="glass"
+            variant="secondary"
             size="md"
             onClick={() => onNavigate('analyzer')}
             rightIcon={<ArrowUpRight className="w-4 h-4" />}
+            className="w-full sm:w-auto"
           >
             Launch Analyzer
           </Button>
@@ -134,6 +135,7 @@ export function DashboardView({
             size="md"
             onClick={() => onNavigate('reports')}
             leftIcon={<FileText className="w-4 h-4" />}
+            className="w-full sm:w-auto"
           >
             Generate Report
           </Button>
@@ -143,7 +145,7 @@ export function DashboardView({
       {/* SECTION 2: Security Metrics KPI Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         {/* KPI 1: Overall Health Score */}
-        <div className="liquid-glass-card p-6 rounded-3xl border border-[var(--glass-border)] flex items-center justify-between text-left">
+        <div className="liquid-glass-card min-h-[136px] p-6 rounded-3xl border border-[var(--glass-border)] flex items-center justify-between text-left">
           <div className="flex flex-col gap-1">
             <span className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider">
               Health Index
@@ -165,7 +167,7 @@ export function DashboardView({
         </div>
 
         {/* KPI 2: Evaluated Passwords */}
-        <div className="liquid-glass-card p-6 rounded-3xl border border-[var(--glass-border)] flex items-center justify-between text-left">
+        <div className="liquid-glass-card min-h-[136px] p-6 rounded-3xl border border-[var(--glass-border)] flex items-center justify-between text-left">
           <div className="flex flex-col gap-1">
             <span className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider">
               Evaluated Passwords
@@ -184,7 +186,7 @@ export function DashboardView({
         </div>
 
         {/* KPI 3: Average Entropy */}
-        <div className="liquid-glass-card p-6 rounded-3xl border border-[var(--glass-border)] flex items-center justify-between text-left">
+        <div className="liquid-glass-card min-h-[136px] p-6 rounded-3xl border border-[var(--glass-border)] flex items-center justify-between text-left">
           <div className="flex flex-col gap-1">
             <span className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider">
               Mean Entropy
@@ -205,7 +207,7 @@ export function DashboardView({
         </div>
 
         {/* KPI 4: Breach Exposure */}
-        <div className="liquid-glass-card p-6 rounded-3xl border border-[var(--glass-border)] flex items-center justify-between text-left">
+        <div className="liquid-glass-card min-h-[136px] p-6 rounded-3xl border border-[var(--glass-border)] flex items-center justify-between text-left">
           <div className="flex flex-col gap-1">
             <span className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider">
               Breach Flagged
@@ -247,7 +249,7 @@ export function DashboardView({
       {/* SECTION 3: Security Intelligence Visualizations (Donut + Active Gauge + Bar Chart) */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Strength Distribution Donut */}
-        <div className="liquid-glass rounded-3xl p-7 border border-[var(--glass-border)] flex flex-col justify-between text-left">
+        <div className="liquid-glass rounded-3xl p-6 sm:p-7 border border-[var(--glass-border)] flex flex-col justify-between text-left min-w-0">
           <div>
             <div className="flex items-center justify-between mb-3">
               <h3 className="text-base font-semibold text-[var(--text-primary)]">Strength Distribution</h3>
@@ -302,7 +304,7 @@ export function DashboardView({
         </div>
 
         {/* Current Active Password Metric Gauge */}
-        <div className="liquid-glass rounded-3xl p-7 border border-[var(--glass-border)] flex flex-col items-center justify-between text-center">
+        <div className="liquid-glass rounded-3xl p-6 sm:p-7 border border-[var(--glass-border)] flex flex-col items-center justify-between text-center min-w-0">
           <div className="w-full flex items-center justify-between mb-2">
             <h3 className="text-base font-semibold text-[var(--text-primary)]">Active Evaluation</h3>
             <Badge variant="blue" size="sm">
@@ -338,7 +340,7 @@ export function DashboardView({
         </div>
 
         {/* Composition & Dimensions Bar Chart */}
-        <div className="liquid-glass rounded-3xl p-7 border border-[var(--glass-border)] flex flex-col justify-between text-left">
+        <div className="liquid-glass rounded-3xl p-6 sm:p-7 border border-[var(--glass-border)] flex flex-col justify-between text-left min-w-0">
           <div>
             <div className="flex items-center justify-between mb-3">
               <h3 className="text-base font-semibold text-[var(--text-primary)]">Cryptographic Metrics</h3>
