@@ -1,42 +1,35 @@
-# SecurePass — Intelligent Password Security & Cryptographic Analyzer
-> **Apple-Inspired Cybersecurity Platform | Liquid Glass Aesthetics | Advanced Motion Design**
+# SecurePass
 
-SecurePass is an enterprise-grade password security analyzer, cryptographic generator, and breach intelligence platform built with a **React 19 + TypeScript + Vite + Tailwind CSS v4** frontend and a high-performance **FastAPI** backend.
+SecurePass is a password security dashboard built with React, TypeScript, Tailwind CSS, and FastAPI. It combines strength analysis, breach checking, password generation, attack-risk education, and printable audit reporting in one interface.
 
----
+## Features
 
-## 🌟 Key Highlights
+- Real-time password analysis with strength, entropy, guessability, weaknesses, and recommendations
+- Cryptographically secure password generation with configurable character rules
+- Breach checks through the Have I Been Pwned range API
+- Attack-simulation and credential-security education
+- Dashboard metrics, reports, and PDF-friendly audit output
+- Responsive dark/light interface with animated UI elements
+- Local frontend fallbacks when the FastAPI service is unavailable
 
-- **Apple-Inspired Liquid Glass Design Language:**
-  Translucent surfaces, frosted glass panels with specular highlights (`backdrop-blur-2xl`), ambient gradient orbs, and spring-physics micro-interactions inspired by macOS Sequoia/Tahoe and iOS Control Center.
-- **7 Complete Views & Workflows:**
-  1. **Overview / Landing Page:** Cinematic hero section, animated security badge, live interactive terminal preview, feature grid, and zero-knowledge architecture breakdown.
-  2. **Security Posture Dashboard:** Comprehensive health index, session strength distribution donut chart, dimensional metric bars, and recent session audit table (zero plaintext retention).
-  3. **Cryptographic Password Analyzer:** Real-time feedback, Apple Watch-style circular score gauge (`ScoreRing`), information entropy meter (`EntropyMeter`), character composition breakdown, weakness detection, and actionable hardening recommendations.
-  4. **Secure Password Generator:** Interactive length slider, rule configuration (uppercase, lowercase, digits, symbols, ambiguous filter), batch generation, color-coded credentials, and one-click copy with celebration confetti.
-  5. **Breach Intelligence Scanner:** Visualized SHA-1 k-anonymity protocol explaining client-side hash separation (5-char prefix query vs. 35-char local suffix match) with zero plaintext leakage.
-  6. **Cybersecurity Academy:** Interactive crack-time simulator projecting commodity CPU vs. 8x RTX 4090 GPU clusters vs. nation-state supercomputers, plus 8 curated interactive learning modules.
-  7. **Executive Audit Reports:** Official NIST SP 800-63B compliance checklist, identified threat indicators, vector PDF print styling (`@media print`), and sanitized JSON audit summary download.
-- **Strict Zero-Knowledge & Sovereign Privacy:**
-  Passwords never leave client memory in plaintext. Breach queries transmit only the 5-character SHA-1 prefix to Have I Been Pwned (HIBP) APIs.
-- **Resilient Dual-Mode Execution:**
-  Direct integration with FastAPI backend on `http://localhost:8000`, with graceful, instant client-side cryptographic fallback (Web Crypto CSPRNG & zxcvbn model) if the backend is booting or offline.
+## Tech Stack
 
----
+| Area | Technology |
+| --- | --- |
+| Frontend | React 19, TypeScript, Vite 8, Tailwind CSS 4 |
+| UI | Framer Motion, Lucide React, Recharts |
+| Backend | FastAPI, Pydantic, zxcvbn |
+| Storage/configuration | SQLAlchemy, SQLite/PostgreSQL environment support |
 
-## 🚀 Quick Start
+## Getting Started
 
-### 1. Frontend Development Server
+### Prerequisites
 
-```bash
-cd frontend
-npm install
-npm run dev
-```
+- Node.js 20 or newer
+- npm
+- Python 3.10 or newer
 
-The application will launch on `http://localhost:5173`.
-
-### 2. Backend FastAPI Service
+### Run the backend
 
 ```bash
 cd backend
@@ -46,43 +39,62 @@ pip install -r requirements.txt
 uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 ```
 
-Health check endpoint: `http://localhost:8000/health`
+The API runs at `http://localhost:8000`. The health endpoint is `http://localhost:8000/health`.
 
-### 3. Production Build & Linting
+Interactive API documentation is available at `http://localhost:8000/docs`.
+
+### Run the frontend
+
+In a second terminal:
 
 ```bash
 cd frontend
-npm run lint    # Runs oxlint (0 errors, 0 warnings)
-npm run build   # Production TypeScript bundle with code-split vendor chunks
-npm run preview # Runs production preview server
+npm install
+npm run dev
 ```
 
----
+Open `http://localhost:5173`.
 
-## 🛡️ Architecture & Cryptography
+To point the frontend at a different API, create `frontend/.env.local`:
 
-```
-┌────────────────────────────────────────────────────────┐
-│                   SecurePass Client                    │
-│      React 19 + Framer Motion + Tailwind CSS v4        │
-└──────────────┬──────────────────────────┬──────────────┘
-               │                          │
-    (5-char SHA-1 Prefix)      (POST /api/analyze, /api/generate)
-               ▼                          ▼
-┌──────────────────────────────┐ ┌──────────────────────┐
-│  HIBP Range API (k-Anonymity)│ │   FastAPI Backend    │
-│  Zero Plaintext Exposure     │ │   zxcvbn + CSPRNG    │
-└──────────────────────────────┘ └──────────────────────┘
+```env
+VITE_API_URL=http://localhost:8000
 ```
 
-### Standards & Guidance
-- **NIST SP 800-63B:** Focuses on length and credential screening rather than arbitrary composition rules.
-- **Troy Hunt HIBP v3:** k-anonymity hash prefix verification.
-- **Dropbox zxcvbn:** Realistic brute-force time and guessability modeling.
-- **Shannon Information Entropy:** $H = L \cdot \log_2(N)$ combinatorial search space measurement.
+### Environment
 
----
+The backend example variables are in `backend/.env.example`:
 
-## 📜 License
+```env
+APP_NAME=SecurePass
+APP_ENV=development
+DATABASE_URL=sqlite:///./securepass.db
+CORS_ORIGINS=http://localhost:5173
+```
 
-MIT License. Designed and engineered for high-security environments and portfolio demonstrations.
+## API
+
+| Method | Endpoint | Purpose |
+| --- | --- | --- |
+| `GET` | `/health` | Service health check |
+| `POST` | `/api/analyze` | Analyze a password |
+| `POST` | `/api/generate` | Generate passwords |
+| `POST` | `/api/breach-check` | Check a password against breach data |
+| `POST` | `/api/attack-simulation` | Estimate attack and dictionary risk |
+| `GET` | `/api/risk-education` | Retrieve security education content |
+| `GET` | `/api/recommendations` | Retrieve general recommendations |
+
+## Privacy and Security
+
+SecurePass uses HIBP k-anonymity: the application sends only the first five characters of a password's SHA-1 hash and compares the remaining suffix locally. The backend accepts passwords for analysis but does not currently persist passwords or completed audit results.
+
+For real-world use, serve the frontend and API over HTTPS and review retention, logging, rate limiting, and production CORS settings.
+
+## Development
+
+```bash
+cd frontend
+npm run lint
+npm run build
+npm run preview
+```
